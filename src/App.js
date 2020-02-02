@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types'
 
 // class App extends Component {
 //   render() {
@@ -12,17 +13,30 @@ import React, {Component} from 'react';
 // }
 
 const App = () => {
+  const profiles = [
+    { name: "taro", age: 10},
+    { name: "mako", age: 20},
+    { name: "noName", age: 5}
+  ]
+
   return (
   <div>
-    <Cat />
+    {
+      profiles.map((profile, index) => {
+        return <User name={profile.name} age={profile.age} key={index}/> 
+      })
+    }
   </div>
   )
 }
 
-const Cat = () => {
-  return <div>meow</div>
+const User = (props) => {
+return <div>My name is {props.name} and my age is {props.age}</div>
 }
 
-
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired
+}
 
 export default App;
